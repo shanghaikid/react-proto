@@ -9,7 +9,6 @@ function create(text) {
     var id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
     _cliHistory[id] = {
         id: id,
-        complete: false,
         text: text
     };
 }

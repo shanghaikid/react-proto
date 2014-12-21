@@ -6,7 +6,7 @@ var React = require('react'),
 
 function getCLIstate() {
     return {
-        response: CLIResponseStore.getAll()
+        responses: CLIResponseStore.getAll()
     }
 }
 
@@ -30,7 +30,7 @@ var CLIApp = React.createClass({
     render: function () {
         return (
             <div id="webconsole">
-                <CLIBody response={this.state.response}></CLIBody>
+                <CLIBody responses={this.state.responses}></CLIBody>
                 <CLIInput></CLIInput>
             </div>
         );

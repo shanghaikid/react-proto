@@ -1,17 +1,28 @@
-var React = require('react');
+var React = require('react'),
+    CLIResponse = require('./CLIResponse.react');
 
 var CLIBody = React.createClass({
+
     displayName: 'CLIBody',
 
     componentDidMount: function() {
         console.log('yes, mounted');
     },
 
-    _response: '',
     render: function () {
-        var response = this._response + this.props.response;
+        if (Object.keys(this.props.responses).length < 1) {
+          return null;
+        }
+
+        var responses = this.props.responses,
+            reponsesItem = [];
+
+        for (var key in responses) {
+          reponsesItem.push(<CLIResponse key={key} response={responses[key]} />);
+        }
+
         return (
-            <div>{response}</div>
+            <ul id="responses">{reponsesItem}</ul>
         );
     }
 });

@@ -1,11 +1,16 @@
 // http://nodejs.org/api/events.html#events_class_events_eventemitter
 var AppDispatcher = require('./../dispatcher/AppDispatcher');
     EventEmitter = require('events').EventEmitter,
-    _responses = '';
+    _responses = {};
 
 // add history
-function addResponse(text) {
-    _responses += text + '\n';
+function create(text) {
+    // Using the current timestamp + random number in place of a real id.
+    var id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
+    _responses[id] = {
+        id: id,
+        response: text
+    };
 }
 
 // delete history
@@ -38,7 +43,7 @@ AppDispatcher.register(function(payload) {
 
     switch(action.actionType) {
         case 'sendCLI':
-            addResponse(action.cli);
+            create(action.cli);
             CLIResponseStore.emitChange();
             break;
 
