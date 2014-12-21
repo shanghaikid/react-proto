@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>A Web CMD Window!</title>
+    <style>
+    body {background: #222;}
+    #webconsole {border: 1px #F1F1F1 solid; background: #333; color: #FFF; padding: 0 0 .5em 0;}
+    #webconsole .title {height: 50px; line-height: 50px; font-size: 18px; background: #888; padding: 0 0 0 1em;}
+    #webconsole .body {height: 200px; background: #333; padding: 1em 0 0 1em;}
+    #webconsole .body.empty{color:#999;}
+    #webconsole .inputContainer {background: #333; overflow:hidden;}
+    #webconsole .inputContainer input{border: none; width:80%; outline: none; background: #333; height: 22px; line-height: 22px; color:#FFF;}
+    #webconsole .inputContainer:before {content: "> "; height:22px; line-height:22px; float: :left; margin: 0 .5em 0 0; color:#FFF; padding:0 0 0 1em;}
+    #webconsole .autoCompletion{display: none}
+    </style>
+  </head>
+  <body>
+    <div id="cliApp"></div>
+    <script src="js/bundle.js"></script>
+  </body>
+</html>
