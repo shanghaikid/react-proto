@@ -44,7 +44,10 @@ AppDispatcher.register(function(payload) {
     switch(action.actionType) {
         case 'sendCLI':
             create(action.cli);
-            CLIResponseStore.emitChange();
+            setTimeout(function() {
+                console.log('timeout');
+                CLIResponseStore.emitChange();
+            }, 2000);
             break;
 
         default:

@@ -14,12 +14,10 @@ var CLIApp = React.createClass({
     displayName: 'CLIApp',
 
     componentDidMount: function() {
-        CLIHistoryStore.addChangeListener(this._onChange);
         CLIResponseStore.addChangeListener(this._onChange);
     },
 
     componentWillUnmount: function() {
-        CLIHistoryStore.removeChangeListener(this._onChange);
         CLIResponseStore.removeChangeListener(this._onChange);
     },
 
