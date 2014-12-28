@@ -32,7 +32,7 @@ var CLIInput = React.createClass({
         }
 
         if (e.keyCode === 67 && e.ctrlKey) {
-            CLIActions.sendCLI('cancel');
+            CLIActions.cancelAction();
             this._clear();
         }
 

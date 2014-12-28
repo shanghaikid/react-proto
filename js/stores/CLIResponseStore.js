@@ -4,13 +4,25 @@ var AppDispatcher = require('./../dispatcher/AppDispatcher');
     _responses = {};
 
 // add history
-function create(text) {
+function create(action, waitingMessage) {
     // Using the current timestamp + random number in place of a real id.
-    var id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
+    var id = action.id || (+new Date() + Math.floor(Math.random() * 999999)).toString(36),
+        response = waitingMessage || action.cli;
+
     _responses[id] = {
         id: id,
-        response: text
+        response: response,
+        complete: !!action.cli
     };
+
+}
+
+// cancel response
+function cancel(action) {
+    console.log(action.id);
+    if (!_responses[action.id].complete) {
+        destroy(action.id);
+    }
 }
 
 // delete history
@@ -43,11 +55,18 @@ AppDispatcher.register(function(payload) {
 
     switch(action.actionType) {
         case 'sendCLI':
-            create(action.cli);
-            setTimeout(function() {
-                console.log('timeout');
-                CLIResponseStore.emitChange();
-            }, 2000);
+            create(action);
+            CLIResponseStore.emitChange();
+            break;
+
+        case 'waitingResponse':
+            create(action, 'Please wait...');
+            CLIResponseStore.emitChange();
+            break;
+
+        case 'cancelAction':
+            cancel(action);
+            CLIResponseStore.emitChange();
             break;
 
         default:
