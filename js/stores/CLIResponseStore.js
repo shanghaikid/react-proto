@@ -20,7 +20,7 @@ function create(action, waitingMessage) {
 // cancel response
 function cancel(action) {
     console.log(action.id);
-    if (!_responses[action.id].complete) {
+    if (_responses[action.id] && !_responses[action.id].complete) {
         destroy(action.id);
     }
 }
