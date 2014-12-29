@@ -12,14 +12,23 @@ var CLIActions = {
         id: id
     });
 
-    _pendingActions.push(setTimeout(function() {
-        AppDispatcher.handleServerAction({
-          actionType: 'sendCLI',
-          cli: cli,
-          id: id
-        });
-    }, 3000));
+    var _timeout;
 
+    var promise = new Promise(function(resolve, reject) {
+        _timeout = setTimeout(function() {
+            resolve({
+                actionType: 'sendCLI',
+                cli: cli,
+                id: id
+            });
+        }, 1500);
+    });
+
+    promise.then(function(res) {
+        AppDispatcher.handleServerAction(res);
+    });
+
+    _pendingActions.push(_timeout);
     _pendingIds.push(id);
   },
 

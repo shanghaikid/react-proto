@@ -7,7 +7,7 @@ var CLIResponse = React.createClass({
     render: function () {
 
         return (
-            <li key={this.props.key}>{this.props.response.response}</li>
+            <li className="responseItem" key={this.props.key}>{this.props.response.response}</li>
         );
     }
 });

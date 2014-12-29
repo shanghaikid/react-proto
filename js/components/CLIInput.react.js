@@ -4,6 +4,11 @@ var React = require('react'),
 var CLIInput = React.createClass({
     displayName: 'CLIInput',
 
+    componentDidMount: function() {
+        // focus input after component mounted
+        this.refs.theInput.getDOMNode().focus();
+    },
+
     getInitialState: function() {
         return {
             value: this.props.value || ''
@@ -52,7 +57,7 @@ var CLIInput = React.createClass({
     render: function () {
         return (
             <div className="inputContainer">
-                <input type="text" value={this.state.value} onChange={this._onChange} onKeyDown={this._onKeyDown} />
+                <input ref="theInput" type="text" value={this.state.value} onChange={this._onChange} onKeyDown={this._onKeyDown} />
             </div>
         );
     }

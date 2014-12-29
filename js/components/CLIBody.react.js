@@ -11,7 +11,7 @@ var CLIBody = React.createClass({
 
     render: function () {
         if (Object.keys(this.props.responses).length < 1) {
-          return null;
+          return <ul className="responses"><li></li></ul>;
         }
 
         var responses = this.props.responses,
@@ -22,7 +22,7 @@ var CLIBody = React.createClass({
         }
 
         return (
-            <ul id="responses">{reponsesItem}</ul>
+            <ul className="responses">{reponsesItem}</ul>
         );
     }
 });
