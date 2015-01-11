@@ -15,9 +15,30 @@
     #webconsole .inputContainer:before {content: "> "; height:22px; line-height:22px; float: :left; margin: 0 .5em 0 0; color:#FFF; padding:0 0 0 1em;}
     #webconsole .autoCompletion{display: none}
     </style>
+    <script>
+        dojoConfig = {
+            has: {
+                "dojo-firebug":0
+            },
+            packages: [
+                {name: 'cli', location: '../../src'}
+              ]
+        };
+    </script>
+    <script type="text/javascript" src="lib/dojo/dojo.js"></script>
   </head>
   <body>
     <div id="cliApp"></div>
-    <script src="js/bundle.js"></script>
+    <script>
+        require([
+            'react/react',
+            'react/jsx!cli/app.js'
+
+        ], function(React, App) {
+            var app = React.createElement(App);
+            React.render(app, document.getElement('cliApp'));
+        });
+
+    </script>
   </body>
 </html>
